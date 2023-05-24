@@ -17,7 +17,7 @@ jobs:
       - name: Install Dependencies
         run: pip install -r requirements.txt
       - name: Run Script and Update data
-        run: python simpsons_generator.py
+        run: python simpsons-generator.py
         # Kaggle and TMDB credentials as environment variables
         env:
           KAGGLE_USERNAME: ${{ secrets.KAGGLE_USERNAME }}
