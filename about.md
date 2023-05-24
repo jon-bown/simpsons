@@ -5,10 +5,8 @@
 ## Episodes & Viewership Through Current Season
 
 
-
-
 -----------------------------------------------------------------------------------------------------------
-By IMDB, Rotten Tomatoes, Wikipedia
+By IMDB, The Movid Database, Wikipedia
 
 
 &gt;Episode info and viewership numbers for all aired episodes of The Simpsons. Info includes director, writers, viewership (millions), IMDB rating, episode title, and synopsis. Also includes a lookup table of all character names.
@@ -16,10 +14,9 @@ By IMDB, Rotten Tomatoes, Wikipedia
 -----------------------------------------------------------------------------------------------------------
 ## Included Files
 
-&gt; Three files comprise this dataset.
-- simpsons_characters.csv: Character info
-- simpsons_episodes.csv: Detailed information on each episode including IMDB rating and viewership
-- simpsons_rt_scores.csv: Season level rotten tomatoes ratings. Rotten tomatoes only has season level rotten tomatoes scores available for this series. 
+&gt; 
+- simpsons_episodes.csv: Detailed information on each episode including IMDB, TMDB rating and viewership.
+- simpsons_characters.csv: Lookup of each simpson character.
 
 ## Featured Notebooks & How To Use
 &gt; - [[Simpsons with R](https://www.kaggle.com/code/jonbown/simpsons-views-with-r-sql)]
@@ -28,4 +25,4 @@ By IMDB, Rotten Tomatoes, Wikipedia
 
 ## Acknowledgements
 
-&gt; If you use this dataset in your research, please credit IMDB, Rotten Tomatoes, Wikipedia.
+&gt; If you use this dataset in your research, please credit IMDB, TMDB, Wikipedia.
