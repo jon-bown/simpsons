@@ -4,7 +4,7 @@ on: [push]
 
 jobs:
   update_plot:
-    name: Update plot with new extreme weather data
+    name: Check for simpsons data update
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -17,12 +17,9 @@ jobs:
       - name: Install Dependencies
         run: pip install -r requirements.txt
       - name: Run Script and Update data
-        run: |
-          jupyter nbconvert --to script simpsons-tv-data-generator.ipynb
-          python simpsons-tv-data-generator.py
-
-        # Kaggle credentials as environment variables
+        run: python simpsons_generator.py
+        # Kaggle and TMDB credentials as environment variables
         env:
           KAGGLE_USERNAME: ${{ secrets.KAGGLE_USERNAME }}
           KAGGLE_KEY: ${{ secrets.KAGGLE_KEY }}
-
+          TMDB_KEY: ${{ secrets.TMDB_KEY }}
