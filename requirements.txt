@@ -4,3 +4,5 @@ bs4
 requests
 datetime
 kaggle
+jupyter
+nbconvert
