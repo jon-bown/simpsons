@@ -1,29 +1,28 @@
-name: Execute notebook
+name: Update Simpsons Data
 
 on: [push]
 
 jobs:
-  run:
+  update_plot:
+    name: Update plot with new extreme weather data
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-    - name: Set up Python
-      uses: actions/setup-python@v2
-    - name: Install dependencies
-      run: pip install -r requirements.txt
-    - uses: jon-bown/run-notebook@v2
-      env:
-        RUNNER: ${{ toJson(runner) }}
-        SECRETS: ${{ toJson(secrets) }}
-        GITHUB: ${{ toJson(github) }}
-        KAGGLE_USERNAME: ${{ secrets.KAGGLE_USERNAME }}
-        KAGGLE_KEY: ${{ secrets.KAGGLE_KEY }}
-      with:
-        notebook: "simpsons-tv-data-generator.ipynb"
-        isReport: False
-        poll: True
-    - uses: actions/upload-artifact@v2
-      if: always()
-      with:
-        name: output
-        path: ${{ runner.temp }}/nb-runner
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.8'
+          cache: 'pip'
+      - name: Install Dependencies
+        run: pip install -r requirements.txt
+      - name: Run Script and Update data
+        run: |
+          jupyter nbconvert --to script simpsons-tv-data-generator.ipynb
+          python simpsons-tv-data-generator.py
+
+        # Kaggle credentials as environment variables
+        env:
+          KAGGLE_USERNAME: ${{ secrets.KAGGLE_USERNAME }}
+          KAGGLE_KEY: ${{ secrets.KAGGLE_KEY }}
+
