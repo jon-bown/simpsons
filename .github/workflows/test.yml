@@ -1,0 +1,29 @@
+name: Execute notebook
+
+on: [push]
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python
+      uses: actions/setup-python@v2
+    - name: Install dependencies
+      run: pip install -r requirements.txt
+    - uses: jon-bown/run-notebook@v2
+      env:
+        RUNNER: ${{ toJson(runner) }}
+        SECRETS: ${{ toJson(secrets) }}
+        GITHUB: ${{ toJson(github) }}
+        KAGGLE_USERNAME: ${{ secrets.KAGGLE_USERNAME }}
+        KAGGLE_KEY: ${{ secrets.KAGGLE_KEY }}
+      with:
+        notebook: "simpsons-tv-data-generator.ipynb"
+        isReport: False
+        poll: True
+    - uses: actions/upload-artifact@v2
+      if: always()
+      with:
+        name: output
+        path: ${{ runner.temp }}/nb-runner
